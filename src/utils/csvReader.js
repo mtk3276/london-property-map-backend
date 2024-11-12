@@ -48,7 +48,7 @@ async function processCsvFile() {
         .pipe(csv({ headers: false }))
         .on('data', async (row) => {
             // Extract and validate relevant data
-            const price_paid = row[1] ? parseFloat(row[1].trim()) : null;
+            const price_paid = row[1]?.trim();
             const postcode = row[3]?.trim();
             const city = row[13]?.trim();
             const latitude = 51.5074;
