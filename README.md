@@ -37,6 +37,8 @@ This application is the backend for a property mapping application that visualis
 Run the CSV reader script to load data into PostgreSQL: 
 `node src/utils/csvReader.js`
 
+4. Set up a Cron job to run batchGeocode.js every minute until all data rows have been populated with latitudes and longitudes
+
 ## Future Development
 - Express endpoints to serve property data to the frontend
 - Azure setup for deployment of the backend and database
