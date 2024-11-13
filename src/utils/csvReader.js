@@ -51,8 +51,8 @@ async function processCsvFile() {
             const price_paid = row[1]?.trim();
             const postcode = row[3]?.trim();
             const city = row[13]?.trim();
-            const latitude = 51.5074;
-            const longitude = -0.1278;
+            const latitude = null;
+            const longitude = null;
 
             // Only proceed if data is valid
             if (!isNaN(price_paid) && postcode && city) {
