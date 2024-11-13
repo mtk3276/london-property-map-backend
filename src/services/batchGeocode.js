@@ -2,8 +2,7 @@ const axios = require("axios");
 const db = require("../db/dbConfig");
 
 async function fetchBatchLatLong(postcodes) {
-    console.log("Fetching lat/long data for postcodes:", postcodes);
-
+    console.log("Fetching latitudes and longitudes...");
     try {
         const response = await axios.post("https://api.postcodes.io/postcodes", {
             postcodes: postcodes
@@ -21,7 +20,6 @@ async function fetchBatchLatLong(postcodes) {
             }
         });
 
-        console.log("Fetched lat/long data:", results);
         return results;
     } catch (error) {
         console.error("Error fetching batch lat/long:", error.message);
@@ -44,8 +42,6 @@ async function updateLatLongBatch() {
         for (let i = 0; i < res.rows.length; i += 100) {
             const batch = res.rows.slice(i, i + 100);
             const postcodes = batch.map(row => row.postcode);
-            
-            console.log(`Processing batch ${i / 100 + 1}, postcodes:`, postcodes);
 
             const latLongData = await fetchBatchLatLong(postcodes);
             if (!latLongData) {
