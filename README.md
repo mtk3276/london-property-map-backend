@@ -37,11 +37,18 @@ This application is the backend for a property mapping application that visualis
 Run the CSV reader script to load data into PostgreSQL: 
 `node src/utils/csvReader.js`
 
-4. Set up a Cron job to run batchGeocode.js every minute until all data rows have been populated with latitudes and longitudes
+4. Set up a cron job to run batchGeocode.js every minute until all data rows have been populated with latitudes and longitudes. 
+*Please note this process can take a long time as only 10,000 postcodes can be geocoded per minute due to the postcode.io rate limit*
+- Ensure environment variables are correctly configured
+- Replace path/to for node and project with full paths 
+- Create a logs directory in your project
+- Once correctly configured, enter the following in a cron tab (open a crontab in terminal using `crontab -e`)
+- `* * * * * DB_HOST=<host_name> DB_USER=<user> DB_PASSWORD=<password> DB_NAME=<db_name> /path/to/node /path/to/london-property-map-backend/src/services/batchGeocode.js >> /path/to/london-property-map-backend/logs/batchGeocode.log 2>&1`
 
 ## Future Development
 - Express endpoints to serve property data to the frontend
 - Azure setup for deployment of the backend and database
 
 ## Acknowledgements
-This project uses data frmo the [Price Paid Data (2023)](https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads#using-or-publishing-our-price-paid-data) published by HM Land Registry, UK Government, available under the [Open Government Licence](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/). 
+- This project uses data from the [Price Paid Data (2023)](https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads#using-or-publishing-our-price-paid-data) published by HM Land Registry, UK Government, available under the [Open Government Licence](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/). 
+- This project uses [Postcodes.io](https://postcodes.io) for postcode lookup and geocoding, available under the [MIT LICENSE](https://opensource.org/license/mit).
