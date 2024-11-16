@@ -11,7 +11,10 @@ This application is the backend for a property mapping application that visualis
 ## Requirements
 - Node.js
 - PostgreSQL 
+- PostGIS
 - A .csv dataset of property data (available in data/ folder or downloadable)
+- GeoJSON files for UK region boundaries 2023, UK local authority boundaries 2024 and UK ward boundaries 2024 (downloadable from [UK's ONS Open Geography Portal](https://geoportal.statistics.gov.uk/))
+- UK wards to local authorities lookup data 2024, as CSV (downloadable from [UK's ONS Open Geography Portal](https://geoportal.statistics.gov.uk/))
 
 ## Getting Started
 1. Set Up PostgreSQL Database
@@ -45,6 +48,12 @@ Run the CSV reader script to load data into PostgreSQL:
 - Once correctly configured, enter the following in a cron tab (open a crontab in terminal using `crontab -e`)
 - `* * * * * DB_HOST=<host_name> DB_USER=<user> DB_PASSWORD=<password> DB_NAME=<db_name> /path/to/node /path/to/london-property-map-backend/src/services/batchGeocode.js >> /path/to/london-property-map-backend/logs/batchGeocode.log 2>&1`
 
+5. Load GeoJSON data into database
+- Add PostGIS extension to the database:
+    `psql -U postgres -d <database_name> -c 'CREATE EXTENSION postgis; CREATE EXTENSION postgis_topology;'`
+- Run the GeoJSON reader to load data into PostgreSQL:
+    `node src/utils/geojsonReader.js`
+
 ## Future Development
 - Express endpoints to serve property data to the frontend
 - Azure setup for deployment of the backend and database
@@ -52,3 +61,4 @@ Run the CSV reader script to load data into PostgreSQL:
 ## Acknowledgements
 - This project uses data from the [Price Paid Data (2023)](https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads#using-or-publishing-our-price-paid-data) published by HM Land Registry, UK Government, available under the [Open Government Licence](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/). 
 - This project uses [Postcodes.io](https://postcodes.io) for postcode lookup and geocoding, available under the [MIT LICENSE](https://opensource.org/license/mit).
+- This project uses GeoJSON data from the [UK's ONS Open Geography Portal](https://geoportal.statistics.gov.uk/), available under the [Open Government Licence](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/). 
