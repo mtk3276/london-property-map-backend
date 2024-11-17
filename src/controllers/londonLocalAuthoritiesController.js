@@ -6,6 +6,7 @@ exports.getLondonLocalAuthorityBoundaries = async (req, res) => {
         fid,
         lad_cd AS "code",
         lad_nm AS "name",
+        avg_price_paid as "average_price_paid",
         ST_AsGeoJSON(geom)::json AS geometry
         FROM london_local_authorities;
     `

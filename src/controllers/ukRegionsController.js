@@ -6,6 +6,7 @@ exports.getRegionsGeoJSON = async (req, res) => {
         fid,
         rgn_cd AS "code",
         rgn_nm AS "name",
+        avg_price_paid as "average_price_paid",
         ST_AsGeoJSON(geom)::json AS geometry
         FROM regions;
     `

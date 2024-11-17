@@ -6,6 +6,7 @@ exports.getWardsGeoJSON = async (req, res) => {
         fid,
         wd_cd AS "code",
         wd_nm AS "name",
+        avg_price_paid as "average_price_paid",
         ST_AsGeoJSON(geom)::json AS geometry
         FROM london_wards;
     `
