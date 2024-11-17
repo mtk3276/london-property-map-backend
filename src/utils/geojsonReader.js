@@ -95,6 +95,7 @@ const createLondonWardsTable = async () => {
     try {
         const createTableQuery = `
             CREATE TABLE IF NOT EXISTS london_wards (LIKE wards);
+            ALTER TABLE london_wards ADD CONSTRAINT unique_global_id UNIQUE (global_id);
         `;
 
         await db.query(createTableQuery);

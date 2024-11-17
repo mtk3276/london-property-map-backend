@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS regions (
     id SERIAL PRIMARY KEY,
     fid INTEGER,
     rgn_cd VARCHAR(10),   -- For RGN23CD, region code
-    rgn_nm VARCHAR(50),   -- For RGN23NM, region name
+    rgn_nm VARCHAR(255),   -- For RGN23NM, region name
     bng_e INTEGER,        -- British National Grid Easting
     bng_n INTEGER,        -- British National Grid Northing
     longitude FLOAT,

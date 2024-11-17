@@ -14,14 +14,14 @@ const tableConfigs = [
         schemaPath: path.join(__dirname, "../db/localAuthorityBoundariesSchema.sql"),
         geojsonPath: path.join(__dirname, "../../data/uk_local_authority_boundaries_bgc.geojson"),
         columnNames: "fid, lad_cd, lad_nm, bng_e, bng_n, longitude, latitude, shape_area, shape_length, global_id, geom",
-        dataColumns: ["FID", "LAD24CD", "LAD23NM", "BNG_E", "BNG_N", "LONG", "LAT", "Shape__Area", "Shape__Length", "GlobalID"]
+        dataColumns: ["FID", "LAD24CD", "LAD24NM", "BNG_E", "BNG_N", "LONG", "LAT", "Shape__Area", "Shape__Length", "GlobalID"]
     },
     {
         name: "wards",
         schemaPath: path.join(__dirname, "../db/wardBoundariesSchema.sql"),
         geojsonPath: path.join(__dirname, "../../data/uk_ward_boundaries_gsc.geojson"),
         columnNames: "fid, wd_cd, wd_nm, bng_e, bng_n, longitude, latitude, shape_area, shape_length, global_id, geom",
-        dataColumns: ["FID", "WD24CD", "WD23NM", "BNG_E", "BNG_N", "LONG", "LAT", "Shape__Area", "Shape__Length", "GlobalID"]
+        dataColumns: ["FID", "WD24CD", "WD24NM", "BNG_E", "BNG_N", "LONG", "LAT", "Shape__Area", "Shape__Length", "GlobalID"]
     }
 ];
 
