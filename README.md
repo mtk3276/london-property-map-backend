@@ -37,8 +37,8 @@ This application is the backend for a property mapping application that visualis
        The `.env` file should already be added to the `.gitignore` file, but please double-check that it is listed there to prevent accidental commits.
 
 3. Load CSV Data into Database
-Run the CSV reader script to load data into PostgreSQL: 
-`node src/utils/csvReader.js`
+Run the price paid CSV reader script to load data for a specific year into PostgreSQL: 
+`node src/utils/pricePaidCsvReader.js <file-name> <file-year>`
 
 4. Set up a cron job to run batchGeocode.js every minute until all data rows have been populated with latitudes and longitudes. 
 *Please note this process can take a long time as only 10,000 postcodes can be geocoded per minute due to the postcode.io rate limit*

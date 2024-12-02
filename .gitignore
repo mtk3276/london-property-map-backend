@@ -1,4 +1,4 @@
 node_modules
 .env
-data/pp-2023.csv
+data/*
 logs/*
