@@ -46,7 +46,7 @@ Run the price paid CSV reader script to load data for a specific year into Postg
 - Replace path/to for node and project with full paths 
 - Create a logs directory in your project
 - Once correctly configured, enter the following in a cron tab (open a crontab in terminal using `crontab -e`)
-- `* * * * * DB_HOST=<host_name> DB_USER=<user> DB_PASSWORD=<password> DB_NAME=<db_name> /path/to/node /path/to/london-property-map-backend/src/services/batchGeocode.js >> /path/to/london-property-map-backend/logs/batchGeocode.log 2>&1`
+- `* * * * * DB_HOST=<host_name> DB_USER=<user> DB_PASSWORD=<password> DB_NAME=<db_name> /path/to/node /path/to/london-property-map-backend/src/services/batchGeocode.js <tablename> >> /path/to/london-property-map-backend/logs/batchGeocode.log 2>&1`
 
 5. Load GeoJSON data into database
 - Add PostGIS extension to the database:
