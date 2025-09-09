@@ -27,10 +27,10 @@ async function fetchBatchLatLong(postcodes) {
     }
 }
 
-async function updateLatLongBatch() {
+async function updateLatLongBatch(tableName) {
     try {
         console.log("Connecting to database...");
-        const res = await db.query("SELECT id, postcode FROM properties WHERE latitude IS NULL OR longitude IS NULL LIMIT 10000");
+        const res = await db.query(`SELECT id, postcode FROM ${tableName} WHERE latitude IS NULL OR longitude IS NULL LIMIT 10000`);
         
         console.log(`Fetched ${res.rows.length} rows from the database`);
 
@@ -55,10 +55,10 @@ async function updateLatLongBatch() {
                 
                 if (latLong) {
                     await db.query(
-                        "UPDATE properties SET latitude = $1, longitude = $2 WHERE id = $3",
+                        `UPDATE ${tableName} SET latitude = $1, longitude = $2 WHERE id = $3`,
                         [latLong.latitude, latLong.longitude, id]
                     );
-                    console.log(`Updated property ${id} with lat: ${latLong.latitude}, long: ${latLong.longitude}`);
+                    console.log(`Updated property ${id} from ${tableName} with lat: ${latLong.latitude}, long: ${latLong.longitude}`);
                 } else {
                     console.log(`No lat/long data for postcode ${postcode}`);
                 }
@@ -72,5 +72,13 @@ async function updateLatLongBatch() {
     }
 }
 
+const args = process.argv.slice(2);
+if (args.length < 1) {
+  console.error('Please provide the table name.');
+  process.exit(1);
+}
+
+const tableName = args[0];
+
 // Run the batch update function
-updateLatLongBatch();
+updateLatLongBatch(tableName);
